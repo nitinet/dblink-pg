@@ -1,0 +1,22 @@
+{
+  "name": "dblink-pg",
+  "version": "1.0.1",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dblink-core": "^1.0.1",
+    "pg": "^8.11.5",
+    "pg-query-stream": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/pg": "^8.11.6"
+  }
+}

@@ -1,0 +1,14 @@
+# Logs
+logs
+*.log
+
+/dist
+
+# Dependency directories
+node_modules/
+tsconfig.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+package-lock.json
+pnpm-lock.yaml

@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"module": "ESNext",
+		"target": "ESNext",
+		"moduleResolution": "Node",
+		"sourceMap": true,
+		"allowSyntheticDefaultImports": true,
+		"removeComments": true,
+		"incremental": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"strict": true,
+		"outDir": "."
+	},
+	"include": [
+		"**/*"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}
