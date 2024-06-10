@@ -55,7 +55,7 @@ export default class PostgreSql extends Handler {
    * @returns {Promise<pg.PoolClient>}
    */
   async getConnection(): Promise<pg.PoolClient> {
-    let conn = await this.connectionPool.connect();
+    const conn = await this.connectionPool.connect();
     return conn;
   }
 
@@ -108,16 +108,16 @@ export default class PostgreSql extends Handler {
    *
    * @async
    * @param {string} query
-   * @param {?any[]} [dataArgs]
+   * @param {?unknown[]} [dataArgs]
    * @param {?pg.Client} [connection]
    * @returns {Promise<model.ResultSet>}
    */
-  async run(query: string, dataArgs?: any[], connection?: pg.Client): Promise<model.ResultSet> {
-    let temp: pg.QueryResult<any>;
+  async run(query: string, dataArgs?: unknown[], connection?: pg.Client): Promise<model.ResultSet> {
+    let temp: pg.QueryResult<Record<string, unknown>>;
     if (connection) {
       temp = await connection.query(query, dataArgs);
     } else {
-      let con = await this.connectionPool.connect();
+      const con = await this.connectionPool.connect();
       try {
         temp = await con.query(query, dataArgs);
       } finally {
@@ -125,7 +125,7 @@ export default class PostgreSql extends Handler {
       }
     }
 
-    let result = new model.ResultSet();
+    const result = new model.ResultSet();
     result.rowCount = temp.rowCount ?? 0;
     result.rows = temp.rows;
     return result;
@@ -140,6 +140,7 @@ export default class PostgreSql extends Handler {
    * @returns {Promise<model.ResultSet>}
    */
   async runStatement(queryStmt: sql.Statement | sql.Statement[], connection?: pg.Client): Promise<model.ResultSet> {
+    // eslint-disable-next-line prefer-const
     let { query, dataArgs } = this.prepareQuery(queryStmt);
     query = this.convertPlaceHolder(query);
 
@@ -151,18 +152,18 @@ export default class PostgreSql extends Handler {
    *
    * @async
    * @param {string} query
-   * @param {?any[]} [dataArgs]
+   * @param {?unknown[]} [dataArgs]
    * @param {?pg.Client} [connection]
    * @returns {Promise<Readable>}
    */
-  async stream(query: string, dataArgs?: any[], connection?: pg.Client): Promise<Readable> {
+  async stream(query: string, dataArgs?: unknown[], connection?: pg.Client): Promise<Readable> {
     const queryStream = new pgQueryStream(query, dataArgs);
     let stream: Readable;
 
     if (connection) {
       stream = connection.query(queryStream);
     } else {
-      let con = await this.connectionPool.connect();
+      const con = await this.connectionPool.connect();
 
       stream = con.query(queryStream);
       stream.on('end', () => {
@@ -180,6 +181,7 @@ export default class PostgreSql extends Handler {
    * @returns {Promise<Readable>}
    */
   streamStatement(queryStmt: sql.Statement | sql.Statement[], connection?: pg.Client): Promise<Readable> {
+    // eslint-disable-next-line prefer-const
     let { query, dataArgs } = this.prepareQuery(queryStmt);
     query = this.convertPlaceHolder(query);
 
