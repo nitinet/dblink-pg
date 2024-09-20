@@ -1,6 +1,6 @@
 {
   "name": "dblink-pg",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "main": "./src/index.js",
   "types": "./src/index.ts",
@@ -15,7 +15,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "dblink-core": "^1.1.0",
+    "dblink-core": "^1.1.1",
     "pg": "^8.13.0",
     "pg-query-stream": "^4.7.0"
   },
