@@ -1,6 +1,6 @@
 {
   "name": "dblink-pg",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "type": "module",
   "main": "./src/index.js",
   "types": "./src/index.ts",
@@ -15,17 +15,17 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "dblink-core": "^1.0.1",
-    "pg": "^8.11.5",
-    "pg-query-stream": "^4.5.5"
+    "dblink-core": "^1.1.0",
+    "pg": "^8.13.0",
+    "pg-query-stream": "^4.7.0"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "@types/pg": "^8.11.6",
-    "@eslint/js": "^9.4.0",
+    "@types/node": "^22.5.5",
+    "@types/pg": "^8.11.10",
+    "@eslint/js": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "globals": "^15.4.0",
-    "typescript-eslint": "^7.12.0"
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
+    "typescript-eslint": "^8.6.0"
   }
 }

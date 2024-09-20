@@ -213,4 +213,16 @@ export default class PostgreSql extends Handler {
   limit(size: string, index?: string): string {
     return ' limit ' + size + (index ? ' OFFSET ' + index : '');
   }
+
+  /**
+   * creates a returing columns expression for the insert statement
+   *
+   * @abstract
+   * @param {sql.INode[]} returnColumns
+   * @returns {string}
+   */
+  getReturnColumnsStr(returnColumns: sql.INode[]): string {
+    const returnColumnsStr = returnColumns.map(a => a.eval(this)).join(' ,');
+    return `returning ${returnColumnsStr}`;
+  }
 }

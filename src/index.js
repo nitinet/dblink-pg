@@ -83,5 +83,9 @@ export default class PostgreSql extends Handler {
   limit(size, index) {
     return ' limit ' + size + (index ? ' OFFSET ' + index : '');
   }
+  getReturnColumnsStr(returnColumns) {
+    const returnColumnsStr = returnColumns.map(a => a.eval(this)).join(' ,');
+    return `returning ${returnColumnsStr}`;
+  }
 }
 //# sourceMappingURL=index.js.map
