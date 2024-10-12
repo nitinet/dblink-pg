@@ -1,4 +1,5 @@
 import { Handler, model, sql } from 'dblink-core';
+import { DataType, IEntityType } from 'dblink-core/src/types';
 import pg from 'pg';
 import pgQueryStream from 'pg-query-stream';
 import { Readable } from 'stream';
@@ -126,7 +127,6 @@ export default class PostgreSql extends Handler {
     }
 
     const result = new model.ResultSet();
-    result.rowCount = temp.rowCount ?? 0;
     result.rows = temp.rows;
     return result;
   }
@@ -224,5 +224,22 @@ export default class PostgreSql extends Handler {
   getReturnColumnsStr(returnColumns: sql.INode[]): string {
     const returnColumnsStr = returnColumns.map(a => a.eval(this)).join(' ,');
     return `returning ${returnColumnsStr}`;
+  }
+
+  serializeValue(val: unknown, dataType: IEntityType<DataType>): unknown {
+    if (dataType == Array) {
+      const str = (val as Array<unknown>).map(a => JSON.stringify(a)).join(',');
+      return `{${str}}`;
+    } else return val;
+  }
+
+  deSerializeValue(val: unknown, dataType: IEntityType<DataType>): unknown {
+    if (dataType == Array) {
+      const str = val as string;
+      return str
+        .substring(1, str.length - 1)
+        .split(',')
+        .map(a => JSON.parse(a));
+    } else return val;
   }
 }
