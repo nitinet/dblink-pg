@@ -222,7 +222,7 @@ export default class PostgreSql extends Handler {
    * @returns {string}
    */
   getReturnColumnsStr(returnColumns: sql.INode[]): string {
-    const returnColumnsStr = returnColumns.map(a => a.eval(this)).join(' ,');
+    const returnColumnsStr = returnColumns.map(a => a.eval(this).query).join(', ');
     return `returning ${returnColumnsStr}`;
   }
 

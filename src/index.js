@@ -87,7 +87,7 @@ export default class PostgreSql extends Handler {
         return ' limit ' + size + (index ? ' OFFSET ' + index : '');
     }
     getReturnColumnsStr(returnColumns) {
-        const returnColumnsStr = returnColumns.map(a => a.eval(this)).join(' ,');
+        const returnColumnsStr = returnColumns.map(a => a.eval(this).query).join(', ');
         return `returning ${returnColumnsStr}`;
     }
     serializeValue(val, dataType) {
