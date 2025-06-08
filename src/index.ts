@@ -24,29 +24,12 @@ export default class PostgreSql extends Handler {
    * Creates an instance of PostgreSql.
    *
    * @constructor
-   * @param {model.IConnectionConfig} config
+   * @param {pg.PoolConfig} config
    */
-  constructor(config: model.IConnectionConfig) {
+  constructor(config: pg.PoolConfig) {
     super(config);
 
-    this.connectionPool = new pg.Pool({
-      user: this.config.username,
-      password: this.config.password,
-      database: this.config.database,
-      host: this.config.host,
-      port: this.config.port,
-      max: this.config.connectionLimit
-    });
-  }
-
-  /**
-   * Handler initialisation
-   *
-   * @async
-   * @returns {Promise<void>}
-   */
-  async init(): Promise<void> {
-    /* document why this async method 'init' is empty */
+    this.connectionPool = new pg.Pool(config);
   }
 
   /**
