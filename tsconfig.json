@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module": "es2022",
+    "module": "nodenext",
     "target": "es2022",
-    "moduleResolution": "Node",
+    "moduleResolution": "node16",
     "inlineSourceMap": true,
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
@@ -10,8 +10,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strict": true,
-    "outDir": "./src"
+    "outDir": "./",
+    "rootDir": ".",
+    "types": ["node"]
   },
-  "include": ["src/**/*"],
+  "include": ["./**/*"],
   "exclude": ["node_modules"]
 }

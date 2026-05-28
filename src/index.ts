@@ -1,5 +1,5 @@
 import { Handler, model, sql } from 'dblink-core';
-import { DataType, IEntityType } from 'dblink-core/src/types';
+import { DataType, IEntityType } from 'dblink-core/src/types.js';
 import pg from 'pg';
 import pgQueryStream from 'pg-query-stream';
 import { Readable } from 'stream';
